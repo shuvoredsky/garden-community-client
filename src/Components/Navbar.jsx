@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
+import { toast, ToastContainer } from "react-toastify";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Sign out successfully");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   console.log(pathname);
   return (
     <div>
       <header className="p-4 bg-gray-500 text-white">
-        <div className="container flex justify-between h-16 mx-auto">
+        <div className="container flex justify-between items h-16 mx-auto">
           <a
             rel="noopener noreferrer"
             href="#"
@@ -75,6 +88,45 @@ const Navbar = () => {
               Sign up
             </button>
           </div>
+          <details className="">
+            <summary className="btn m-1 list-none">
+              <div className="navbar-end gap-5 pr-4">
+                {user && user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="User"
+                    title={user.displayName || "User"}
+                    className="w-10 h-10 rounded-full object-cover hover:scale-105 transition duration-300"
+                  />
+                ) : (
+                  <FaUser size={32} title="Guest User" />
+                )}
+
+                <ToastContainer
+                  position="top-center"
+                  autoClose={3000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="colored"
+                />
+              </div>
+            </summary>
+            <ul className="">
+              <li>
+                <button
+                  onClick={handleLogOut}
+                  className="btn bg-sky-400 text-white btn-secondary"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </details>
           <button className="p-4 lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
