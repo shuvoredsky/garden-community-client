@@ -64,6 +64,16 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 href="#"
                 className="flex items-center px-4 -mb-1 "
+                to="/share-tip"
+              >
+                Share Garden Tip
+              </NavLink>
+            </li>
+            <li className="flex">
+              <NavLink
+                rel="noopener noreferrer"
+                href="#"
+                className="flex items-center px-4 -mb-1 "
                 to="/about"
               >
                 About

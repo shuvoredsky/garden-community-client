@@ -1,61 +1,61 @@
 [
   {
     "id": 1,
-    "name": "Amina Rahman",
+    "name": "Green Roots Nursery",
     "image": "https://i.ibb.co/PvHbn1Sr/agriculture-healthy-food.jpg",
     "status": "active"
   },
   {
     "id": 2,
-    "name": "Tariq Ali",
+    "name": "EcoGrow Bangladesh",
     "image": "tariq.jpg",
     "status": "inactive"
   },
   {
     "id": 3,
-    "name": "Nusrat Jahan",
+    "name": "NatureCare Botanicals",
     "image": "https://i.ibb.co/xRbTb2s/bearded-man-holding-hose-standing-watering-plants-unrecognizable-blurred-colleague-growing-flowers-t.jpg",
     "status": "active"
   },
   {
     "id": 4,
-    "name": "Rezaul Karim",
+    "name": "Fresh Bloom Gardeners",
     "image": "https://i.ibb.co/Xx1vK7d9/person-caring-protecting-mother-earth-earth-day.jpg",
     "status": "active"
   },
   {
     "id": 5,
-    "name": "Fahmida Haque",
+    "name": "GreenEra Farms",
     "image": "fahmida.jpg",
     "status": "inactive"
   },
   {
     "id": 6,
-    "name": "Sadia Islam",
+    "name": "Sunleaf Garden Center",
     "image": "https://i.ibb.co/MxBpRch8/two-gardeners-smiling-while-holding-pot-plant.jpg",
     "status": "active"
   },
   {
     "id": 7,
-    "name": "Tanvir Ahmed",
+    "name": "BloomVista Landscaping",
     "image": "https://i.ibb.co/spfWP8Tk/two-serious-professional-gardeners-caring-petunia-flowers-standing-outdoors.jpg",
     "status": "active"
   },
   {
     "id": 8,
-    "name": "Lubna Akter",
+    "name": "EcoHarvest Nurseries",
     "image": "https://i.ibb.co/SXBd0vXD/young-gardeners-spraying-plants-making-notes.jpg",
     "status": "active"
   },
   {
     "id": 9,
-    "name": "Shuvo Roy",
+    "name": "Greenway Gardening Co.",
     "image": "shuvo.jpg",
     "status": "inactive"
   },
   {
     "id": 10,
-    "name": "Mokbul Hossain",
+    "name": "Leaf & Life Horticulture",
     "image": "mokbul.jpg",
     "status": "inactive"
   }

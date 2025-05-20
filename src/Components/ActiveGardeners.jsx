@@ -18,24 +18,31 @@ const ActiveGardeners = () => {
         Active Gardeners
       </h1>
 
-      <div className="grid grid-cols-3 gap-5 my-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
         {activeGardener.map((gardener) => (
-          <div key={gardener.id} className=" border-green-300 border-2">
-            <div className="card bg-base-100 w-96 shadow-sm">
-              <figure>
-                <img
-                  className=" mx-auto mb-2 object-cover"
-                  src={gardener.image}
-                  alt="Shoes"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{gardener.name}</h2>
-                <p className="text-green-600">{gardener.status}</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Buy Now</button>
-                </div>
-              </div>
+          <div
+            key={gardener.id}
+            className="bg-green-50 border border-green-300 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div className="flex flex-col items-center p-5">
+              <img
+                className="w-full h-48 object-cover mb-4 rounded-md shadow-sm"
+                src={gardener.image}
+                alt={gardener.name}
+              />
+              <h2 className="text-xl font-semibold text-green-800 text-center">
+                {gardener.name}
+              </h2>
+              <span
+                className={`mt-2 px-3 py-1 rounded-full text-sm font-medium ${
+                  gardener.status === "active"
+                    ? "bg-green-200 text-green-800"
+                    : "bg-red-200 text-red-800"
+                }`}
+              >
+                {gardener.status.charAt(0).toUpperCase() +
+                  gardener.status.slice(1)}
+              </span>
             </div>
           </div>
         ))}

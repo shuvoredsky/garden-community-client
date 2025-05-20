@@ -5,6 +5,7 @@ import About from "../pages/About";
 import Blog from "../pages/Blog";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp.jsx";
+import ShareTipForm from "../pages/ShareTipForm.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/sign-up",
         Component: SignUp,
+      },
+      {
+        path: "/share-tip",
+        Component: ShareTipForm,
       },
     ],
   },
