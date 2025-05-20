@@ -2,10 +2,10 @@ import { createBrowserRouter } from "react-router";
 import RootLayout from "../RootLayout/RootLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import Blog from "../pages/Blog";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp.jsx";
 import ShareTipForm from "../pages/ShareTipForm.jsx";
+import BrowseTips from "../pages/BrowseTips.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -21,8 +21,8 @@ export const router = createBrowserRouter([
         Component: About,
       },
       {
-        path: "/blog",
-        Component: Blog,
+        path: "/browse-tips",
+        Component: BrowseTips,
       },
       {
         path: "/sign-in",
