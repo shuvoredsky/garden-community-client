@@ -1,98 +1,108 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
-import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { useLoaderData, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
-const ShareTipForm = () => {
-  const { user } = useContext(AuthContext);
+const UpdateMyTips = () => {
+  const loadedData = useLoaderData();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    title: "",
-    plantType: "",
-    difficulty: "Easy",
-    description: "",
-    imageUrl: "",
-    category: "Plant Care",
-    availability: "Public",
+    title: loadedData.title || "",
+    plantType: loadedData.plantType || "",
+    difficulty: loadedData.difficulty || "Easy",
+    description: loadedData.description || "",
+    imageUrl: loadedData.imageUrl || "",
+    category: loadedData.category || "Composting",
+    availability: loadedData.availability || "Public",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
+    console.log(formData);
 
-    const submissionData = {
-      ...formData,
-      userEmail: user?.email,
-      userName: user?.displayName,
-    };
-
-    console.log("Submitting garden tip:", submissionData);
-
-    fetch("http://localhost:3000/gardener", {
-      method: "POST",
+    fetch(`http://localhost:3000/gardener/${loadedData._id}`, {
+      method: "PUT",
       headers: {
-        "content-type": "Application/json",
+        "content-type": "application/json",
       },
-      body: JSON.stringify(submissionData),
+      body: JSON.stringify(formData),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("in the client side data", data);
+        if (data.modifiedCount) {
+          Swal.fire("Success", "Garden tip updated successfully!", "success");
+          navigate("/my-tips");
+        } else {
+          Swal.fire("Note", "No changes were made.", "info");
+        }
       });
-
-    // Show success message
-    toast.success("Garden tip shared successfully!");
-    setFormData({
-      title: "",
-      plantType: "",
-      difficulty: "Easy",
-      description: "",
-      imageUrl: "",
-      category: "Plant Care",
-      availability: "Public",
-    });
   };
+
+  //    try {
+  //       const res = await fetch(
+  //         `http://localhost:3000/gardener/${loadedData._id}`,
+  //         {
+  //           method: "PUT",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify(formData),
+  //         }
+  //       );
+
+  //   const result = await res.json();
+
+  //   if (result.modifiedCount > 0) {
+  //     Swal.fire("Success", "Garden tip updated successfully!", "success");
+  //     navigate("/my-tips");
+  //   } else {
+  //     Swal.fire("Note", "No changes were made.", "info");
+  //   }
+  // } catch (error) {
+  //   console.error(error);
+  //   Swal.fire("Error", "Something went wrong!", "error");
+  // }
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center text-green-700">
-        ➕ Share a Garden Tip
+        ✏️ Update My Tip
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleUpdate} className="space-y-4">
         <input
           type="text"
           name="title"
-          placeholder="Title (e.g., How I Grow Tomatoes Indoors)"
+          placeholder="Title"
           value={formData.title}
           onChange={handleChange}
           className="w-full p-2 border rounded"
           required
         />
-
         <input
           type="text"
           name="plantType"
-          placeholder="Plant Type / Topic"
+          placeholder="Plant Type"
           value={formData.plantType}
           onChange={handleChange}
           className="w-full p-2 border rounded"
           required
         />
-
         <select
           name="difficulty"
           value={formData.difficulty}
           onChange={handleChange}
           className="w-full p-2 border rounded"
-          required
         >
           <option>Easy</option>
           <option>Medium</option>
           <option>Hard</option>
         </select>
-
         <textarea
           name="description"
           placeholder="Description"
@@ -101,7 +111,6 @@ const ShareTipForm = () => {
           className="w-full p-2 border rounded"
           required
         ></textarea>
-
         <input
           type="url"
           name="imageUrl"
@@ -111,48 +120,28 @@ const ShareTipForm = () => {
           className="w-full p-2 border rounded"
           required
         />
-
         <select
           name="category"
           value={formData.category}
           onChange={handleChange}
           className="w-full p-2 border rounded"
-          required
         >
           <option>Composting</option>
           <option>Plant Care</option>
           <option>Vertical Gardening</option>
         </select>
-
         <select
           name="availability"
           value={formData.availability}
           onChange={handleChange}
           className="w-full p-2 border rounded"
-          required
         >
           <option>Public</option>
           <option>Hidden</option>
         </select>
-
-        <div className="flex gap-4">
-          <input
-            type="text"
-            value={user?.displayName}
-            readOnly
-            className="w-1/2 p-2 border rounded bg-gray-100"
-          />
-          <input
-            type="email"
-            value={user?.email}
-            readOnly
-            className="w-1/2 p-2 border rounded bg-gray-100"
-          />
-        </div>
-
         <button
           type="submit"
-          className="w-full cursor-pointer bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
         >
           Update Tip
         </button>
@@ -161,4 +150,4 @@ const ShareTipForm = () => {
   );
 };
 
-export default ShareTipForm;
+export default UpdateMyTips;

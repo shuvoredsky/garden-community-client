@@ -9,6 +9,7 @@ import BrowseTips from "../pages/BrowseTips.jsx";
 import TipDetails from "../pages/TipDetails.jsx";
 import PrivetRoute from "../Components/PrivetRoute.jsx";
 import MyTips from "../pages/MyTips.jsx";
+import UpdateMyTips from "../pages/UpdateMyTips.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
         path: "/update-tips/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/gardener/${params.id}`),
-        Component: BrowseTips,
+        Component: UpdateMyTips,
       },
       {
         path: "/sign-in",

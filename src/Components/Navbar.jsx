@@ -17,7 +17,7 @@ const Navbar = () => {
         toast.error(error.message);
       });
   };
-  console.log(pathname);
+
   return (
     <div>
       <header className="p-4 bg-gray-500 text-white">
