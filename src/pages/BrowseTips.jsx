@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 const BrowseTips = () => {
+  // const navigate = useNavigate();
   const [browseTips, setBrowseTips] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3000/gardener")
@@ -10,6 +11,12 @@ const BrowseTips = () => {
         setBrowseTips(data);
       });
   }, []);
+
+  // const handleTipsDetails = (id) => {
+  //   console.log(id);
+  //   navigate(`/tip-details/${id}`);
+  // };
+
   return (
     <div className="overflow-x-auto p-4 bg-green-50 rounded-lg shadow-md">
       <table className="min-w-full divide-y divide-green-200">
@@ -40,10 +47,11 @@ const BrowseTips = () => {
                 {tip.category}
               </td>
               <td className="px-4 py-2">
-                <Link to={`/tips/${tip._id}`}>
-                  <button className="text-green-700 cursor-pointer hover:text-white hover:bg-green-500 border border-green-500 px-3 py-1 rounded-md transition">
-                    See More
-                  </button>
+                <Link
+                  to={`/gardener/${tip._id}`}
+                  className="text-green-700 cursor-pointer hover:text-white hover:bg-green-500 border border-green-500 px-3 py-1 rounded-md transition"
+                >
+                  See More
                 </Link>
               </td>
             </tr>

@@ -6,7 +6,7 @@ const PrivetRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
   if (loading) {
-    return <div className="text-center mt-10">Loading...</div>; // Or a spinner
+    return <div className="text-center mt-10">Loading...</div>;
   }
 
   if (user && user.email) {

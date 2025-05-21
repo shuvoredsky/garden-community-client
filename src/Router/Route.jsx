@@ -6,6 +6,7 @@ import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp.jsx";
 import ShareTipForm from "../pages/ShareTipForm.jsx";
 import BrowseTips from "../pages/BrowseTips.jsx";
+import TipDetails from "../pages/TipDetails.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,16 @@ export const router = createBrowserRouter([
       {
         path: "/share-tip",
         Component: ShareTipForm,
+      },
+      {
+        path: "/gardener/:id",
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `http://localhost:3000/gardener/${params.id}`
+          );
+          return await res.json();
+        },
+        Component: TipDetails,
       },
     ],
   },

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../Provider/AuthProvider"; // যেখানে ইউজার তথ্য থাকে ধরে নিচ্ছি
+import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const ShareTipForm = () => {
-  const { user } = useContext(AuthContext); // ইউজার তথ্য
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     title: "",
     plantType: "",
@@ -28,7 +28,6 @@ const ShareTipForm = () => {
       userName: user?.displayName,
     };
 
-    // Replace this with your real database call (e.g., POST to Firebase or MongoDB)
     console.log("Submitting garden tip:", submissionData);
 
     fetch("http://localhost:3000/gardener", {
