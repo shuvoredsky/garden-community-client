@@ -7,6 +7,7 @@ import SignUp from "../SignUp/SignUp.jsx";
 import ShareTipForm from "../pages/ShareTipForm.jsx";
 import BrowseTips from "../pages/BrowseTips.jsx";
 import TipDetails from "../pages/TipDetails.jsx";
+import PrivetRoute from "../Components/PrivetRoute.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +46,11 @@ export const router = createBrowserRouter([
           );
           return await res.json();
         },
-        Component: TipDetails,
+        element: (
+          <PrivetRoute>
+            <TipDetails></TipDetails>
+          </PrivetRoute>
+        ),
       },
     ],
   },
