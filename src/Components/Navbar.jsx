@@ -74,9 +74,9 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 href="#"
                 className="flex items-center px-4 -mb-1 "
-                to="/about"
+                to="/my-tips"
               >
-                About
+                My Tips
               </NavLink>
             </li>
           </ul>

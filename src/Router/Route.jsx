@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../RootLayout/RootLayout";
 import Home from "../pages/Home";
-import About from "../pages/About";
+import About from "../pages/MyTips.jsx";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp.jsx";
 import ShareTipForm from "../pages/ShareTipForm.jsx";
 import BrowseTips from "../pages/BrowseTips.jsx";
 import TipDetails from "../pages/TipDetails.jsx";
 import PrivetRoute from "../Components/PrivetRoute.jsx";
+import MyTips from "../pages/MyTips.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -19,11 +20,18 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "/about",
-        Component: About,
+        path: "/my-tips",
+        loader: () => fetch("http://localhost:3000/gardener/"),
+        Component: MyTips,
       },
       {
         path: "/browse-tips",
+        Component: BrowseTips,
+      },
+      {
+        path: "/update-tips/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/gardener/${params.id}`),
         Component: BrowseTips,
       },
       {
