@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const ShareTipForm = () => {
   const { user } = useContext(AuthContext);
@@ -28,9 +29,7 @@ const ShareTipForm = () => {
       userName: user?.displayName,
     };
 
-    console.log("Submitting garden tip:", submissionData);
-
-    fetch("http://localhost:3000/gardener", {
+    fetch("https://garden-community-server.vercel.app/gardener", {
       method: "POST",
       headers: {
         "content-type": "Application/json",
@@ -39,11 +38,12 @@ const ShareTipForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("in the client side data", data);
+        if (data.insertedId) {
+          Swal.fire("✅ Tips shared successfully!");
+        }
       });
 
-    // Show success message
-    toast.success("Garden tip shared successfully!");
+    toast.success("🌱 Garden tip shared successfully!");
     setFormData({
       title: "",
       plantType: "",
@@ -56,18 +56,21 @@ const ShareTipForm = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center text-green-700">
-        ➕ Share a Garden Tip
+    <div className="max-w-4xl mx-auto my-10 p-6 md:p-10 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-green-700 dark:text-green-300">
+        🌿 Share Your Garden Tip
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
         <input
           type="text"
           name="title"
-          placeholder="Title (e.g., How I Grow Tomatoes Indoors)"
+          placeholder="Title (e.g., Indoor Tomato Tips)"
           value={formData.title}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="col-span-1 md:col-span-2 p-3 border rounded dark:bg-gray-700 dark:text-white"
           required
         />
 
@@ -77,7 +80,7 @@ const ShareTipForm = () => {
           placeholder="Plant Type / Topic"
           value={formData.plantType}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
           required
         />
 
@@ -85,7 +88,7 @@ const ShareTipForm = () => {
           name="difficulty"
           value={formData.difficulty}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
           required
         >
           <option>Easy</option>
@@ -98,7 +101,8 @@ const ShareTipForm = () => {
           placeholder="Description"
           value={formData.description}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          rows="4"
+          className="col-span-1 md:col-span-2 p-3 border rounded dark:bg-gray-700 dark:text-white"
           required
         ></textarea>
 
@@ -108,7 +112,7 @@ const ShareTipForm = () => {
           placeholder="Image URL"
           value={formData.imageUrl}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="col-span-1 md:col-span-2 p-3 border rounded dark:bg-gray-700 dark:text-white"
           required
         />
 
@@ -116,11 +120,11 @@ const ShareTipForm = () => {
           name="category"
           value={formData.category}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
           required
         >
-          <option>Composting</option>
           <option>Plant Care</option>
+          <option>Composting</option>
           <option>Vertical Gardening</option>
         </select>
 
@@ -128,33 +132,31 @@ const ShareTipForm = () => {
           name="availability"
           value={formData.availability}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
           required
         >
           <option>Public</option>
           <option>Hidden</option>
         </select>
 
-        <div className="flex gap-4">
-          <input
-            type="text"
-            value={user?.displayName}
-            readOnly
-            className="w-1/2 p-2 border rounded bg-gray-100"
-          />
-          <input
-            type="email"
-            value={user?.email}
-            readOnly
-            className="w-1/2 p-2 border rounded bg-gray-100"
-          />
-        </div>
+        <input
+          type="text"
+          value={user?.displayName || ""}
+          readOnly
+          className="p-3 border rounded bg-gray-100 dark:bg-gray-600 dark:text-white"
+        />
+        <input
+          type="email"
+          value={user?.email || ""}
+          readOnly
+          className="p-3 border rounded bg-gray-100 dark:bg-gray-600 dark:text-white"
+        />
 
         <button
           type="submit"
-          className="w-full cursor-pointer bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+          className="col-span-1 md:col-span-2 mt-4 bg-green-600 hover:bg-green-700 text-white py-3 rounded transition"
         >
-          Update Tip
+          ✅ Share Tip
         </button>
       </form>
     </div>

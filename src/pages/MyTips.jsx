@@ -21,7 +21,7 @@ const MyTips = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/gardener/${_id}`, {
+        fetch(`https://garden-community-server.vercel.app/gardener/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

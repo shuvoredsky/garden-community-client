@@ -28,13 +28,16 @@ const UpdateMyTips = () => {
     e.preventDefault();
     console.log(formData);
 
-    fetch(`http://localhost:3000/gardener/${loadedData._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://garden-community-server.vercel.app/gardener/${loadedData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {

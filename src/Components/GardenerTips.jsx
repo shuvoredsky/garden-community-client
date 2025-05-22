@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const GardenerTips = () => {
   const [gardenersTips, setGardenersTips] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/gardener")
+    fetch("https://garden-community-server.vercel.app/gardener")
       .then((res) => res.json())
       .then((data) => {
         setGardenersTips(data);

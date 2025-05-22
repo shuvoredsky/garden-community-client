@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Spring Flower Festival",
+    "date": "2025-03-21",
+    "location": "Botanical Garden, Dhaka",
+    "image": "https://i.ibb.co/j9w3JTM9/31113.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Organic Gardening Workshop",
+    "date": "2025-04-10",
+    "location": "Green Park, Sylhet",
+    "image": "https://i.ibb.co/XZ1c36HC/46110.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Urban Balcony Gardening",
+    "date": "2025-05-05",
+    "location": "Rooftop Cafe, Chittagong",
+    "image": "https://i.ibb.co/gFJ95pwp/6943738.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Compost Making Seminar",
+    "date": "2025-05-15",
+    "location": "City Hall, Rajshahi",
+    "image": "https://i.ibb.co/s9XvKQCW/6971519.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Green Living Expo",
+    "date": "2025-06-01",
+    "location": "Eco Center, Khulna",
+    "image": "https://i.ibb.co/v4QPhRtJ/7843895.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Tree Plantation Drive",
+    "date": "2025-06-15",
+    "location": "National Park, Barisal",
+    "image": "https://i.ibb.co/PnVvQsp/11266189.jpg"
+  }
+]

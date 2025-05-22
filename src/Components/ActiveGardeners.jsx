@@ -13,16 +13,16 @@ const ActiveGardeners = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="bg-green-50">
       <h1 className="text-black text-3xl text-center font-bold py-6">
         Active Gardeners
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
         {activeGardener.map((gardener) => (
           <div
             key={gardener.id}
-            className="bg-green-50 border border-green-300 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+            className="bg-white border border-green-300 rounded-xl shadow-md hover:shadow-lg transition duration-300"
           >
             <div className="flex flex-col items-center p-5">
               <img

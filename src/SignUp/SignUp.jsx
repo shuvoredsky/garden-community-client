@@ -87,7 +87,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-violet-500 flex items-center justify-center px-4 pb-20 pt-5">
+    <div className="min-h-screen bg-green-500 flex items-center justify-center px-4 pb-20 pt-5">
       <Helmet>
         <title>Event | Register</title>
       </Helmet>

@@ -44,7 +44,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 to-indigo-400 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center px-4">
       <Helmet>
         <title>Event | Login</title>
       </Helmet>

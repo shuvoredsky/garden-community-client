@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import { BiSolidLike } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 const TipDetails = () => {
   const [like, setLike] = useState(0);
@@ -19,7 +20,7 @@ const TipDetails = () => {
   const handleupdateLike = () => {
     setLike(like + 1);
     console.log(like);
-    fetch(`http://localhost:3000/gardener/${_id}`, {
+    fetch(`https://garden-community-server.vercel.app/gardener/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -28,7 +29,9 @@ const TipDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after update like", data);
+        if (data.modifiedCount) {
+          Swal.fire("You liked this Tip");
+        }
       });
   };
 

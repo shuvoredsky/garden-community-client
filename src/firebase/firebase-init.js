@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBK1oYKhjjAykMw8z3OYXlOUncaIfn9tDQ",
-  authDomain: "garden-community-a8c0a.firebaseapp.com",
-  projectId: "garden-community-a8c0a",
-  storageBucket: "garden-community-a8c0a.firebasestorage.app",
-  messagingSenderId: "5172792591",
-  appId: "1:5172792591:web:0f451eedae7d7f13c1027a",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 const app = initializeApp(firebaseConfig);

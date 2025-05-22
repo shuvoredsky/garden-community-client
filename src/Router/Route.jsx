@@ -24,8 +24,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-tips",
-        loader: () => fetch("http://localhost:3000/gardener/"),
-        Component: MyTips,
+        loader: () =>
+          fetch("https://garden-community-server.vercel.app/gardener/"),
+        element: (
+          <PrivetRoute>
+            <MyTips></MyTips>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/browse-tips",
@@ -34,8 +39,14 @@ export const router = createBrowserRouter([
       {
         path: "/update-tips/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/gardener/${params.id}`),
-        Component: UpdateMyTips,
+          fetch(
+            `https://garden-community-server.vercel.app/gardener/${params.id}`
+          ),
+        element: (
+          <PrivetRoute>
+            <UpdateMyTips></UpdateMyTips>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/sign-in",
@@ -47,7 +58,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/share-tip",
-        Component: ShareTipForm,
+        element: (
+          <PrivetRoute>
+            <ShareTipForm></ShareTipForm>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/explore-gardeners",
@@ -57,7 +72,7 @@ export const router = createBrowserRouter([
         path: "/gardener/:id",
         loader: async ({ params }) => {
           const res = await fetch(
-            `http://localhost:3000/gardener/${params.id}`
+            `https://garden-community-server.vercel.app/gardener/${params.id}`
           );
           return await res.json();
         },
