@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../RootLayout/RootLayout";
 import Home from "../pages/Home";
-import About from "../pages/MyTips.jsx";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp.jsx";
 import ShareTipForm from "../pages/ShareTipForm.jsx";
@@ -10,11 +9,14 @@ import TipDetails from "../pages/TipDetails.jsx";
 import PrivetRoute from "../Components/PrivetRoute.jsx";
 import MyTips from "../pages/MyTips.jsx";
 import UpdateMyTips from "../pages/UpdateMyTips.jsx";
+import ExploreGardenr from "../pages/ExploreGardenr.jsx";
+import ErrorPage from "../pages/ErrorPage.jsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -46,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "/share-tip",
         Component: ShareTipForm,
+      },
+      {
+        path: "/explore-gardeners",
+        Component: ExploreGardenr,
       },
       {
         path: "/gardener/:id",

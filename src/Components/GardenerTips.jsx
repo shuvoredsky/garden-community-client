@@ -29,6 +29,14 @@ const GardenerTips = () => {
             <h2 className="text-lg font-semibold text-green-800">
               {gardener.title}
             </h2>
+            <div className="text-green-700 lg:mt-20">
+              <p>
+                Total Like:{" "}
+                <span className="font-bold">
+                  {gardener.like ? gardener.like : 0}
+                </span>
+              </p>
+            </div>
           </div>
         ))}
       </div>

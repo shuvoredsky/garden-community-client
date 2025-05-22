@@ -46,29 +46,6 @@ const UpdateMyTips = () => {
       });
   };
 
-  //    try {
-  //       const res = await fetch(
-  //         `http://localhost:3000/gardener/${loadedData._id}`,
-  //         {
-  //           method: "PUT",
-  //           headers: { "Content-Type": "application/json" },
-  //           body: JSON.stringify(formData),
-  //         }
-  //       );
-
-  //   const result = await res.json();
-
-  //   if (result.modifiedCount > 0) {
-  //     Swal.fire("Success", "Garden tip updated successfully!", "success");
-  //     navigate("/my-tips");
-  //   } else {
-  //     Swal.fire("Note", "No changes were made.", "info");
-  //   }
-  // } catch (error) {
-  //   console.error(error);
-  //   Swal.fire("Error", "Something went wrong!", "error");
-  // }
-
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center text-green-700">

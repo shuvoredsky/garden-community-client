@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Rahim Uddin",
+    "age": 45,
+    "gender": "Male",
+    "status": "active",
+    "experiences": "15 years in organic farming",
+    "image": "https://i.ibb.co/PvHbn1Sr/agriculture-healthy-food.jpg",
+    "totalSharedTips": 12,
+    "location": "Rajshahi, Bangladesh"
+  },
+  {
+    "name": "Karim Hossain",
+    "age": 38,
+    "gender": "Male",
+    "status": "inactive",
+    "experiences": "10 years in rooftop gardening",
+    "image": "tariq.jpg",
+    "totalSharedTips": 8,
+    "location": "Dhaka, Bangladesh"
+  },
+  {
+    "name": "Jamal Mia",
+    "age": 50,
+    "gender": "Male",
+    "status": "active",
+    "experiences": "20 years in vegetable farming",
+    "image": "https://i.ibb.co/xRbTb2s/bearded-man-holding-hose-standing-watering-plants-unrecognizable-blurred-colleague-growing-flowers-t.jpg",
+    "totalSharedTips": 25,
+    "location": "Cumilla, Bangladesh"
+  },
+  {
+    "name": "Sohag Ali",
+    "age": 29,
+    "gender": "Male",
+    "status": "active",
+    "experiences": "5 years in balcony gardening",
+    "image": "https://i.ibb.co/Xx1vK7d9/person-caring-protecting-mother-earth-earth-day.jpg",
+    "totalSharedTips": 6,
+    "location": "Khulna, Bangladesh"
+  },
+  {
+    "name": "Faisal Ahmed",
+    "age": 35,
+    "gender": "Male",
+    "status": "inactive",
+    "experiences": "12 years in herbal plant care",
+    "image": "fahmida.jpg",
+    "totalSharedTips": 10,
+    "location": "Sylhet, Bangladesh"
+  },
+  {
+    "name": "Tariqul Islam",
+    "age": 41,
+    "gender": "Male",
+    "status": "active",
+    "experiences": "18 years in tree plantation",
+    "image": "https://i.ibb.co/MxBpRch8/two-gardeners-smiling-while-holding-pot-plant.jpg",
+    "totalSharedTips": 14,
+    "location": "Barisal, Bangladesh"
+  },
+  {
+    "name": "Asif Reza",
+    "age": 27,
+    "gender": "Male",
+    "status": "active",
+    "experiences": "3 years in bonsai cultivation",
+    "image": "https://i.ibb.co/spfWP8Tk/two-serious-professional-gardeners-caring-petunia-flowers-standing-outdoors.jpg",
+    "totalSharedTips": 5,
+    "location": "Gazipur, Bangladesh"
+  },
+  {
+    "name": "Rafiq Hasan",
+    "age": 48,
+    "gender": "Male",
+    "status": "active",
+    "experiences": "22 years in seed preservation",
+    "image": "https://i.ibb.co/SXBd0vXD/young-gardeners-spraying-plants-making-notes.jpg",
+    "totalSharedTips": 19,
+    "location": "Mymensingh, Bangladesh"
+  },
+  {
+    "name": "Shuvo Chakrabarti",
+    "age": 33,
+    "gender": "Male",
+    "status": "inactive",
+    "experiences": "7 years in flower gardening",
+    "image": "shuvo.jpg",
+    "totalSharedTips": 9,
+    "location": "Chattogram, Bangladesh"
+  },
+  {
+    "name": "Mokbul Rahman",
+    "age": 52,
+    "gender": "Male",
+    "status": "inactive",
+    "experiences": "30 years in traditional farming",
+    "image": "mokbul.jpg",
+    "totalSharedTips": 27,
+    "location": "Jessore, Bangladesh"
+  }
+]
