@@ -17,6 +17,8 @@ const BrowseTips = () => {
         const params = new URLSearchParams();
 
         if (filters.difficulty) params.append("difficulty", filters.difficulty);
+        console.log("Sending filter:", filters.difficulty);
+
         if (filters.sort) params.append("sort", filters.sort);
 
         const response = await fetch(
@@ -77,23 +79,6 @@ const BrowseTips = () => {
               <option value="Easy">Easy</option>
               <option value="Medium">Medium</option>
               <option value="Hard">Hard</option>
-            </select>
-          </div>
-
-          <div className="flex items-center">
-            <label htmlFor="sort" className="mr-2 font-medium text-gray-700">
-              Sort By:
-            </label>
-            <select
-              id="sort"
-              name="sort"
-              value={filters.sort}
-              onChange={handleFilterChange}
-              className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
-            >
-              <option value="">Default</option>
-              <option value="easy">Easiest First</option>
-              <option value="hard">Hardest First</option>
             </select>
           </div>
         </div>

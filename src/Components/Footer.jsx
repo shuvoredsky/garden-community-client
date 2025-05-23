@@ -4,89 +4,74 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-green-700 text-white py-10 px-4">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Section 1: Quick Links */}
-        <div>
-          <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-          <ul className="space-y-2">
-            <li>
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/browse-tips" className="hover:underline">
-                Browse Tips
-              </Link>
-            </li>
-            <li>
-              <Link to="/my-tips" className="hover:underline">
-                My Tips
-              </Link>
-            </li>
-            <li>
-              <Link to="/explore-gardeners" className="hover:underline">
-                Explore Gardeners
-              </Link>
-            </li>
-            <li>
-              <Link to="/share-tip" className="hover:underline">
-                Share Tip
-              </Link>
-            </li>
-          </ul>
-        </div>
+    <footer className="bg-green-700 text-white">
+      <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col items-center text-center space-y-10">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+          {/* Column 1 */}
+          <div className="lg:ml-40">
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/" className="hover:underline">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/browse-tips" className="hover:underline">
+                  Browse Tips
+                </Link>
+              </li>
+              <li>
+                <Link to="/my-tips" className="hover:underline">
+                  My Tips
+                </Link>
+              </li>
+              <li>
+                <Link to="/explore-gardeners" className="hover:underline">
+                  Explore Gardeners
+                </Link>
+              </li>
+              <li>
+                <Link to="/share-tip" className="hover:underline">
+                  Share Tip
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-        {/* Section 2: About / Contact Info */}
-        <div>
-          <h3 className="text-xl font-bold mb-4">About Gardenia</h3>
-          <p className="text-sm leading-relaxed">
-            Gardenia is a community-driven platform to share tips, ideas, and
-            love for gardening. Whether you are a beginner or expert, grow your
-            knowledge and your garden here.
-          </p>
-          <p className="mt-4 text-sm">
-            📧 Email: support@gardenia.com <br />
-            📞 Phone: +880 1234 567890
-          </p>
-        </div>
+          {/* Column 2 */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">About Gardenia</h3>
+            <p className="text-sm leading-relaxed mb-3">
+              Gardenia is your friendly garden community for sharing tips,
+              learning new techniques, and connecting with fellow plant lovers.
+              🌱
+            </p>
+            <p className="text-sm">📧 support@gardenia.com</p>
+            <p className="text-sm">📞 +880 1234 567890</p>
+          </div>
 
-        {/* Section 3: Social Media */}
-        <div>
-          <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-          <div className="flex space-x-5 text-2xl">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <FaInstagramSquare />
-            </a>
+          {/* Column 3 */}
+          <div className="lg:ml-20">
+            <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+            <div className="flex justify-center md:justify-start space-x-5 text-2xl">
+              <a href="#" aria-label="Facebook">
+                <FaFacebook />
+              </a>
+              <a href="#" aria-label="Twitter">
+                <FaTwitter />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <FaInstagramSquare />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom copyright */}
-      <div className="text-center mt-8 border-t border-white/20 pt-4 text-sm">
-        © {new Date().getFullYear()} Gardenia Community. All rights reserved.
+        {/* Copyright */}
+        <div className="border-t border-white/20 w-full pt-6 text-sm">
+          © {new Date().getFullYear()} Gardenia Community. All rights reserved.
+        </div>
       </div>
     </footer>
   );

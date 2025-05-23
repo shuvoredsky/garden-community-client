@@ -8,36 +8,29 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [isDark, setIsDark] = useState(false);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   const handleLogOut = () => {
     logOut()
       .then(() => toast.success("Sign out successfully"))
       .catch((error) => toast.error(error.message));
   };
-
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    if (newTheme) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
 
   const navLinks = [
     ["Home", "/"],
@@ -51,8 +44,8 @@ const Navbar = () => {
     "border-b-2 border-green-800 dark:border-green-400 font-semibold";
 
   return (
-    <header className="sticky top-0 z-50 bg-green-100 dark:bg-gray-800 shadow-md">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50  shadow-md">
+      <div className="max-w-screen-xl bg-green-100 dark:bg-gray-800 dark:text-white mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div
@@ -69,7 +62,7 @@ const Navbar = () => {
             </span>
           </div>
 
-          {/* Menu Links */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 items-center">
             {navLinks.map(([label, path]) => (
               <NavLink
@@ -88,26 +81,25 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Right section */}
-          <div className="flex items-center space-x-4">
-            {/* Toggle Theme */}
-            <label className="flex items-center space-x-2 cursor-pointer">
+          {/* Desktop Right Section */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Theme Toggle */}
+            <label
+              onChange={handleToggle}
+              checked={theme == "light" ? false : true}
+              className="flex items-center space-x-2 cursor-pointer"
+            >
               <span className="text-sm">Light</span>
               <div className="relative">
-                <input
-                  type="checkbox"
-                  className="hidden peer"
-                  checked={isDark}
-                  onChange={toggleTheme}
-                />
+                <input type="checkbox" className="hidden peer" />
                 <div className="w-10 h-6 bg-gray-300 peer-checked:bg-green-600 dark:bg-gray-600 rounded-full shadow-inner" />
-                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 bg-white peer-checked:left-auto peer-checked:right-0 rounded-full shadow" />
+                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 bg-white peer-checked:left-auto peer-checked:right-0 rounded-full shadow transition-all" />
               </div>
               <span className="text-sm">Dark</span>
             </label>
 
             {/* Auth Buttons */}
-            {!user && (
+            {!user ? (
               <>
                 <button
                   onClick={() => navigate("/sign-in")}
@@ -126,13 +118,10 @@ const Navbar = () => {
                   Sign up
                 </button>
               </>
-            )}
-
-            {/* User Profile */}
-            {user && (
+            ) : (
               <details className="dropdown dropdown-end">
                 <summary className="cursor-pointer list-none">
-                  {user?.photoURL ? (
+                  {user.photoURL ? (
                     <img
                       src={user.photoURL}
                       alt="User"
@@ -156,23 +145,69 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Dropdown */}
-          <div className="md:hidden">
+          {/* Mobile Menu */}
+          <div className="md:hidden relative">
             <details className="dropdown">
               <summary className="btn btn-ghost list-none">☰</summary>
-              <ul className="menu dropdown-content z-[1] p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-52">
+              <ul className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-800 rounded-md shadow-lg z-50 p-2 w-56 space-y-1">
                 {navLinks.map(([label, path]) => (
                   <li key={label}>
                     <NavLink
                       to={path}
                       className={({ isActive }) =>
-                        isActive ? activeClass : ""
+                        `block px-3 py-2 rounded ${
+                          isActive
+                            ? "bg-green-200 dark:bg-green-600 text-green-900 dark:text-white"
+                            : "hover:bg-green-100 dark:hover:bg-gray-700"
+                        }`
                       }
                     >
                       {label}
                     </NavLink>
                   </li>
                 ))}
+
+                {/* Mobile Theme Toggle */}
+                <li>
+                  <div className="flex items-center justify-between px-3 py-2 text-sm">
+                    <span>Light</span>
+                    <label
+                      onChange={handleToggle}
+                      checked={theme == "light" ? false : true}
+                      className="relative inline-flex items-center cursor-pointer"
+                    >
+                      <input type="checkbox" className="sr-only peer" />
+                      <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-green-600 dark:bg-gray-600" />
+                      <div className="absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-all peer-checked:translate-x-full" />
+                    </label>
+                    <span>Dark</span>
+                  </div>
+                </li>
+
+                {user && (
+                  <li className="flex items-center justify-between px-3 py-2">
+                    <div className="flex items-center gap-2">
+                      {user.photoURL ? (
+                        <img
+                          src={user.photoURL}
+                          className="w-8 h-8 rounded-full border"
+                          alt="user"
+                        />
+                      ) : (
+                        <FaUser size={20} />
+                      )}
+                      <span className="text-sm truncate max-w-[100px]">
+                        {user.displayName || "User"}
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleLogOut}
+                      className="text-sm text-red-500 hover:underline"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                )}
               </ul>
             </details>
           </div>
