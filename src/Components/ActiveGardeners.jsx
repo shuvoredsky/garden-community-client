@@ -1,38 +1,45 @@
 import React, { useEffect, useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 const ActiveGardeners = () => {
   const [activeGardener, setActiveGardener] = useState([]);
+
   useEffect(() => {
     fetch("gardeners.json")
       .then((res) => res.json())
       .then((data) => {
         const activeGardeners = data.filter(
-          (single) => single.status == "active"
+          (gardener) => gardener.status === "active"
         );
         setActiveGardener(activeGardeners);
       });
   }, []);
+
   return (
-    <div className="bg-green-50">
-      <h1 className="text-black text-3xl text-center font-bold py-6">
-        Active Gardeners
+    <div className="bg-green-50 py-8 px-4">
+      <h1 className="text-3xl text-center font-bold text-green-700 mb-6">
+        🌿 Active Gardeners
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {activeGardener.map((gardener) => (
           <div
             key={gardener.id}
             className="bg-white border border-green-300 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+            data-tooltip-id="active-tooltip"
+            data-tooltip-content="Gardener is Active"
           >
             <div className="flex flex-col items-center p-5">
               <img
-                className="w-full h-48 object-cover mb-4 rounded-md shadow-sm"
                 src={gardener.image}
                 alt={gardener.name}
+                className="w-full h-48 object-cover mb-4 rounded-md shadow-sm"
               />
+
               <h2 className="text-xl font-semibold text-green-800 text-center">
                 {gardener.name}
               </h2>
+
               <span
                 className={`mt-2 px-3 py-1 rounded-full text-sm font-medium ${
                   gardener.status === "active"
@@ -47,6 +54,8 @@ const ActiveGardeners = () => {
           </div>
         ))}
       </div>
+
+      <Tooltip id="active-tooltip" place="top" effect="solid" />
     </div>
   );
 };

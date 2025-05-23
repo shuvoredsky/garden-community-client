@@ -62,7 +62,6 @@ const Navbar = () => {
             </span>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 items-center">
             {navLinks.map(([label, path]) => (
               <NavLink
@@ -81,9 +80,7 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Desktop Right Section */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* Theme Toggle */}
             <label
               onChange={handleToggle}
               checked={theme == "light" ? false : true}
@@ -98,7 +95,70 @@ const Navbar = () => {
               <span className="text-sm">Dark</span>
             </label>
 
-            {/* Auth Buttons */}
+            {!user ? (
+              <>
+                <button
+                  onClick={() => navigate("/sign-in")}
+                  className={`text-sm ${
+                    pathname === "/sign-in" ? "text-red-500 font-semibold" : ""
+                  }`}
+                >
+                  Sign in
+                </button>
+                <button
+                  onClick={() => navigate("/sign-up")}
+                  className={`text-sm ${
+                    pathname === "/sign-up" ? "text-red-500 font-semibold" : ""
+                  }`}
+                >
+                  Sign up
+                </button>
+              </>
+            ) : (
+              <details className="dropdown dropdown-end">
+                <summary className="cursor-pointer list-none">
+                  {user && user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="User"
+                      title={user.displayName || "User"}
+                      className="w-10 h-10 rounded-full border-2 border-green-700 p-0.5 object-cover hover:scale-105 transition duration-300"
+                    />
+                  ) : (
+                    <FaUser size={32} title="Guest User" />
+                  )}
+                </summary>
+                <ul className="p-2 bg-white dark:bg-gray-700 shadow-md rounded-md w-32">
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="btn w-full text-left text-sm"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </details>
+            )}
+          </div>
+
+          <div className="md:hidden flex items-center space-x-4">
+            <label className="flex items-center space-x-1 cursor-pointer">
+              <span className="text-sm">Light</span>
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  className="hidden peer"
+                  checked={theme === "dark"}
+                  onChange={handleToggle}
+                />
+                <div className="w-10 h-6 bg-gray-300 peer-checked:bg-green-600 dark:bg-gray-600 rounded-full shadow-inner" />
+                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 bg-white peer-checked:left-auto peer-checked:right-0 rounded-full shadow transition-all" />
+              </div>
+              <span className="text-sm">Dark</span>
+            </label>
+
+            {/* Mobile Auth Buttons */}
             {!user ? (
               <>
                 <button
@@ -143,73 +203,6 @@ const Navbar = () => {
                 </ul>
               </details>
             )}
-          </div>
-
-          {/* Mobile Menu */}
-          <div className="md:hidden relative">
-            <details className="dropdown">
-              <summary className="btn btn-ghost list-none">☰</summary>
-              <ul className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-800 rounded-md shadow-lg z-50 p-2 w-56 space-y-1">
-                {navLinks.map(([label, path]) => (
-                  <li key={label}>
-                    <NavLink
-                      to={path}
-                      className={({ isActive }) =>
-                        `block px-3 py-2 rounded ${
-                          isActive
-                            ? "bg-green-200 dark:bg-green-600 text-green-900 dark:text-white"
-                            : "hover:bg-green-100 dark:hover:bg-gray-700"
-                        }`
-                      }
-                    >
-                      {label}
-                    </NavLink>
-                  </li>
-                ))}
-
-                {/* Mobile Theme Toggle */}
-                <li>
-                  <div className="flex items-center justify-between px-3 py-2 text-sm">
-                    <span>Light</span>
-                    <label
-                      onChange={handleToggle}
-                      checked={theme == "light" ? false : true}
-                      className="relative inline-flex items-center cursor-pointer"
-                    >
-                      <input type="checkbox" className="sr-only peer" />
-                      <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-green-600 dark:bg-gray-600" />
-                      <div className="absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-all peer-checked:translate-x-full" />
-                    </label>
-                    <span>Dark</span>
-                  </div>
-                </li>
-
-                {user && (
-                  <li className="flex items-center justify-between px-3 py-2">
-                    <div className="flex items-center gap-2">
-                      {user.photoURL ? (
-                        <img
-                          src={user.photoURL}
-                          className="w-8 h-8 rounded-full border"
-                          alt="user"
-                        />
-                      ) : (
-                        <FaUser size={20} />
-                      )}
-                      <span className="text-sm truncate max-w-[100px]">
-                        {user.displayName || "User"}
-                      </span>
-                    </div>
-                    <button
-                      onClick={handleLogOut}
-                      className="text-sm text-red-500 hover:underline"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                )}
-              </ul>
-            </details>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
   {
     "id": 2,
     "name": "Karim Hossain",
-    "image": "tariq.jpg",
+    "image": "https://i.ibb.co/mVPY8FrS/young-bearded-gardener-man-wearing-jumpsuit-hat-holding-hedge-clippers-potted-plant-smiling-cheerful.jpg",
     "status": "inactive"
   },
   {
@@ -26,7 +26,7 @@
   {
     "id": 5,
     "name": "Faisal Ahmed",
-    "image": "fahmida.jpg",
+    "image": "https://i.ibb.co/Z11kp5gd/outdoors-portrait-young-attractive-bearded-hispanic-man-blue-t-shirt-gloves-working-garden-with-tool.jpg",
     "status": "inactive"
   },
   {
@@ -49,14 +49,14 @@
   },
   {
     "id": 9,
-    "name": "Shuvo Chakrabarti",
-    "image": "shuvo.jpg",
+    "name": "Kuddus Ali",
+    "image": "https://i.ibb.co/tTcpjhzT/positive-male-florist-standing-rows-with-potted-plants-greenhouse-cutting-bush-holding-sprouts.jpg",
     "status": "inactive"
   },
   {
     "id": 10,
     "name": "Mokbul Rahman",
-    "image": "mokbul.jpg",
+    "image": "https://i.ibb.co/0p0n2KRL/portrait-man-working-with-weedwacker.jpg",
     "status": "inactive"
   }
 ]

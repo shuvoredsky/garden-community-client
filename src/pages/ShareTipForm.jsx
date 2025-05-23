@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Typewriter } from "react-simple-typewriter";
 
 const ShareTipForm = () => {
   const { user } = useContext(AuthContext);
@@ -58,7 +59,19 @@ const ShareTipForm = () => {
   return (
     <div className="max-w-4xl mx-auto my-10 p-6 md:p-10 bg-white dark:bg-gray-800 rounded-lg shadow-md">
       <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-green-700 dark:text-green-300">
-        🌿 Share Your Garden Tip
+        <Typewriter
+          words={[
+            "🌿 Share Your Garden Tip",
+            "🌼 Grow Knowledge Together",
+            "🌱 Contribute with Your Experience",
+          ]}
+          loop={true}
+          cursor
+          cursorStyle="|"
+          typeSpeed={70}
+          deleteSpeed={40}
+          delaySpeed={1500}
+        />
       </h2>
       <form
         onSubmit={handleSubmit}

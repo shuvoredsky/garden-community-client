@@ -25,12 +25,11 @@ const ExploreGardenr = () => {
         🌿 Explore Gardeners
       </h1>
 
-      {/* Grid with 3 columns on large screens */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {gardeners.map((g) => (
           <div
             key={g.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition"
+            className="bg-white text-center rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition"
           >
             <img
               src={g.image}
@@ -39,19 +38,16 @@ const ExploreGardenr = () => {
             />
 
             <div className="p-4">
-              {/* Name boro kore */}
               <h2 className="text-2xl font-bold text-green-800 mb-2">
                 {g.name}
               </h2>
 
-              {/* Categories dui sari bullet list */}
               <ul className="grid grid-cols-2 gap-x-4 gap-y-1 list-disc list-inside text-gray-700 text-sm mb-4">
                 {g.categories?.slice(0, 5).map((cat, idx) => (
                   <li key={idx}>{cat}</li>
                 ))}
               </ul>
 
-              {/* Extra info */}
               <p>
                 <span className="font-medium">Age:</span> {g.age}
               </p>

@@ -87,7 +87,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-green-500 flex items-center justify-center px-4 pb-20 pt-5">
+    <div className="min-h-screen bg-green-900 flex items-center justify-center px-4 pb-20 pt-5">
       <Helmet>
         <title>Event | Register</title>
       </Helmet>
@@ -172,7 +172,7 @@ const SignUp = () => {
           </button>
           <p className="text-center text-sm mt-4">
             Already have an account?{" "}
-            <Link to="/login" className="text-pink-300 hover:underline">
+            <Link to="/sign-in" className="text-pink-300 hover:underline">
               Login
             </Link>
           </p>

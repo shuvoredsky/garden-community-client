@@ -44,7 +44,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-800 to-green-900 flex items-center justify-center px-4">
       <Helmet>
         <title>Event | Login</title>
       </Helmet>
@@ -91,9 +91,10 @@ const SignIn = () => {
           >
             Login
           </button>
+
           <p className="text-center text-sm mt-4">
             Don’t have an account?{" "}
-            <Link to="/register" className="text-red-300 hover:underline">
+            <Link to="/sign-up" className="text-red-300 hover:underline">
               Register
             </Link>
           </p>

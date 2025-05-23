@@ -17,7 +17,6 @@ const BrowseTips = () => {
         const params = new URLSearchParams();
 
         if (filters.difficulty) params.append("difficulty", filters.difficulty);
-        console.log("Sending filter:", filters.difficulty);
 
         if (filters.sort) params.append("sort", filters.sort);
 
@@ -83,7 +82,6 @@ const BrowseTips = () => {
           </div>
         </div>
 
-        {/* Tips Table */}
         {tips.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
