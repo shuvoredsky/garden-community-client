@@ -26,7 +26,7 @@ const UpdateMyTips = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
 
     fetch(
       `https://garden-community-server.vercel.app/gardener/${loadedData._id}`,

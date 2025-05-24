@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 
@@ -44,6 +45,9 @@ const MyTips = () => {
 
   return (
     <div className="max-w-5xl mx-auto my-10">
+      <Helmet>
+        <title>Garden | My-Tips</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-6 text-center">My Garden Tips</h1>
       <div className="overflow-x-auto">
         <table className="table w-full border border-gray-300">

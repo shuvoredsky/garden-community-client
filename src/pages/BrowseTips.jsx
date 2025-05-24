@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router";
 
 const BrowseTips = () => {
@@ -53,6 +54,9 @@ const BrowseTips = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <Helmet>
+        <title>Garden | Browse Tips</title>
+      </Helmet>
       <div className="bg-white rounded-lg shadow-md p-6">
         <h1 className="text-2xl font-bold text-green-800 mb-6">
           Gardening Tips

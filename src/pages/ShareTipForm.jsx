@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { Typewriter } from "react-simple-typewriter";
+import { Helmet } from "react-helmet-async";
 
 const ShareTipForm = () => {
   const { user } = useContext(AuthContext);
@@ -57,8 +58,11 @@ const ShareTipForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-10 p-6 md:p-10 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-green-700 dark:text-green-300">
+    <div className="max-w-4xl mx-auto my-10 p-6 md:p-10 bg-white text-black rounded-lg shadow-md">
+      <Helmet>
+        <title>Garden | Share Tip</title>
+      </Helmet>
+      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-green-700 ">
         <Typewriter
           words={[
             "🌿 Share Your Garden Tip",
@@ -83,7 +87,7 @@ const ShareTipForm = () => {
           placeholder="Title (e.g., Indoor Tomato Tips)"
           value={formData.title}
           onChange={handleChange}
-          className="col-span-1 md:col-span-2 p-3 border rounded dark:bg-gray-700 dark:text-white"
+          className="col-span-1 md:col-span-2 p-3 border rounded "
           required
         />
 
@@ -93,7 +97,7 @@ const ShareTipForm = () => {
           placeholder="Plant Type / Topic"
           value={formData.plantType}
           onChange={handleChange}
-          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
+          className="p-3 border rounded "
           required
         />
 
@@ -101,7 +105,7 @@ const ShareTipForm = () => {
           name="difficulty"
           value={formData.difficulty}
           onChange={handleChange}
-          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
+          className="p-3 border rounded "
           required
         >
           <option>Easy</option>
@@ -115,7 +119,7 @@ const ShareTipForm = () => {
           value={formData.description}
           onChange={handleChange}
           rows="4"
-          className="col-span-1 md:col-span-2 p-3 border rounded dark:bg-gray-700 dark:text-white"
+          className="col-span-1 md:col-span-2 p-3 border rounded "
           required
         ></textarea>
 
@@ -125,7 +129,7 @@ const ShareTipForm = () => {
           placeholder="Image URL"
           value={formData.imageUrl}
           onChange={handleChange}
-          className="col-span-1 md:col-span-2 p-3 border rounded dark:bg-gray-700 dark:text-white"
+          className="col-span-1 md:col-span-2 p-3 border rounded "
           required
         />
 
@@ -133,7 +137,7 @@ const ShareTipForm = () => {
           name="category"
           value={formData.category}
           onChange={handleChange}
-          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
+          className="p-3 border rounded "
           required
         >
           <option>Plant Care</option>
@@ -145,7 +149,7 @@ const ShareTipForm = () => {
           name="availability"
           value={formData.availability}
           onChange={handleChange}
-          className="p-3 border rounded dark:bg-gray-700 dark:text-white"
+          className="p-3 border rounded "
           required
         >
           <option>Public</option>
@@ -156,13 +160,13 @@ const ShareTipForm = () => {
           type="text"
           value={user?.displayName || ""}
           readOnly
-          className="p-3 border rounded bg-gray-100 dark:bg-gray-600 dark:text-white"
+          className="p-3 border rounded bg-gray-100 "
         />
         <input
           type="email"
           value={user?.email || ""}
           readOnly
-          className="p-3 border rounded bg-gray-100 dark:bg-gray-600 dark:text-white"
+          className="p-3 border rounded bg-gray-100 "
         />
 
         <button

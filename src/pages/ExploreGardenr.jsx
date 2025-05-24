@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ExploreGardenr = () => {
   const [gardeners, setGardeners] = useState([]);
@@ -21,6 +22,9 @@ const ExploreGardenr = () => {
 
   return (
     <div className="max-w-6xl mx-auto my-10 px-4">
+      <Helmet>
+        <title>Garden | Explore</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">
         🌿 Explore Gardeners
       </h1>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
@@ -8,23 +8,23 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  );
+  // const [theme, setTheme] = useState(
+  //   localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  // );
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
+  // useEffect(() => {
+  //   localStorage.setItem("theme", theme);
+  //   const localTheme = localStorage.getItem("theme");
+  //   document.querySelector("html").setAttribute("data-theme", localTheme);
+  // }, [theme]);
 
-  const handleToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
+  // const handleToggle = (e) => {
+  //   if (e.target.checked) {
+  //     setTheme("dark");
+  //   } else {
+  //     setTheme("light");
+  //   }
+  // };
 
   const handleLogOut = () => {
     logOut()
@@ -45,7 +45,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50  shadow-md">
-      <div className="max-w-screen-xl bg-green-100 dark:bg-gray-800 dark:text-white mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl bg-green-800  mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div
@@ -82,8 +82,8 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <label
-              onChange={handleToggle}
-              checked={theme == "light" ? false : true}
+              // onChange={handleToggle}
+              // checked={theme == "light" ? false : true}
               className="flex items-center space-x-2 cursor-pointer"
             >
               <span className="text-sm">Light</span>
@@ -149,8 +149,8 @@ const Navbar = () => {
                 <input
                   type="checkbox"
                   className="hidden peer"
-                  checked={theme === "dark"}
-                  onChange={handleToggle}
+                  // checked={theme === "dark"}
+                  // onChange={handleToggle}
                 />
                 <div className="w-10 h-6 bg-gray-300 peer-checked:bg-green-600 dark:bg-gray-600 rounded-full shadow-inner" />
                 <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 bg-white peer-checked:left-auto peer-checked:right-0 rounded-full shadow transition-all" />
