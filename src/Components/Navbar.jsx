@@ -1,30 +1,14 @@
-import React, { useContext } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router";
+import React, { useContext, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  // const [theme, setTheme] = useState(
-  //   localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  // );
-
-  // useEffect(() => {
-  //   localStorage.setItem("theme", theme);
-  //   const localTheme = localStorage.getItem("theme");
-  //   document.querySelector("html").setAttribute("data-theme", localTheme);
-  // }, [theme]);
-
-  // const handleToggle = (e) => {
-  //   if (e.target.checked) {
-  //     setTheme("dark");
-  //   } else {
-  //     setTheme("light");
-  //   }
-  // };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogOut = () => {
     logOut()
@@ -41,11 +25,11 @@ const Navbar = () => {
   ];
 
   const activeClass =
-    "border-b-2 border-green-800 dark:border-green-400 font-semibold";
+    "border-b-2 border-green-300 dark:border-green-400 font-semibold";
 
   return (
-    <header className="sticky top-0 z-50  shadow-md">
-      <div className="max-w-screen-xl bg-green-800  mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 shadow-md bg-green-800 text-white dark:bg-green-900">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div
@@ -57,11 +41,10 @@ const Navbar = () => {
               alt="Logo"
               className="w-10 h-10 rounded-full"
             />
-            <span className="text-2xl font-bold text-green-800 dark:text-white">
-              Garden
-            </span>
+            <span className="text-2xl font-bold text-white">Garden</span>
           </div>
 
+          {/* Desktop Menu */}
           <nav className="hidden md:flex space-x-6 items-center">
             {navLinks.map(([label, path]) => (
               <NavLink
@@ -71,7 +54,7 @@ const Navbar = () => {
                   `text-md px-2 py-1 transition duration-200 ${
                     isActive
                       ? activeClass
-                      : "hover:border-b-2 hover:border-green-400"
+                      : "hover:border-b-2 hover:border-green-300"
                   }`
                 }
               >
@@ -80,27 +63,16 @@ const Navbar = () => {
             ))}
           </nav>
 
+          {/* Desktop Auth */}
           <div className="hidden md:flex items-center space-x-4">
-            <label
-              // onChange={handleToggle}
-              // checked={theme == "light" ? false : true}
-              className="flex items-center space-x-2 cursor-pointer"
-            >
-              <span className="text-sm">Light</span>
-              <div className="relative">
-                <input type="checkbox" className="hidden peer" />
-                <div className="w-10 h-6 bg-gray-300 peer-checked:bg-green-600 dark:bg-gray-600 rounded-full shadow-inner" />
-                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 bg-white peer-checked:left-auto peer-checked:right-0 rounded-full shadow transition-all" />
-              </div>
-              <span className="text-sm">Dark</span>
-            </label>
-
             {!user ? (
               <>
                 <button
                   onClick={() => navigate("/sign-in")}
                   className={`text-sm ${
-                    pathname === "/sign-in" ? "text-red-500 font-semibold" : ""
+                    pathname === "/sign-in"
+                      ? "text-yellow-300 font-semibold"
+                      : ""
                   }`}
                 >
                   Sign in
@@ -108,7 +80,9 @@ const Navbar = () => {
                 <button
                   onClick={() => navigate("/sign-up")}
                   className={`text-sm ${
-                    pathname === "/sign-up" ? "text-red-500 font-semibold" : ""
+                    pathname === "/sign-up"
+                      ? "text-yellow-300 font-semibold"
+                      : ""
                   }`}
                 >
                   Sign up
@@ -117,22 +91,22 @@ const Navbar = () => {
             ) : (
               <details className="dropdown dropdown-end">
                 <summary className="cursor-pointer list-none">
-                  {user && user.photoURL ? (
+                  {user?.photoURL ? (
                     <img
                       src={user.photoURL}
                       alt="User"
                       title={user.displayName || "User"}
-                      className="w-10 h-10 rounded-full border-2 border-green-700 p-0.5 object-cover hover:scale-105 transition duration-300"
+                      className="w-10 h-10 rounded-full border-2 border-green-300 p-0.5 object-cover hover:scale-105 transition duration-300"
                     />
                   ) : (
                     <FaUser size={32} title="Guest User" />
                   )}
                 </summary>
-                <ul className="p-2 bg-white dark:bg-gray-700 shadow-md rounded-md w-32">
+                <ul className="p-2 mt-2 bg-white dark:bg-gray-700 shadow-md rounded-md w-36 text-black dark:text-white">
                   <li>
                     <button
                       onClick={handleLogOut}
-                      className="btn w-full text-left text-sm"
+                      className="w-full text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-600 p-1 rounded"
                     >
                       Logout
                     </button>
@@ -142,69 +116,73 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="md:hidden flex items-center space-x-4">
-            <label className="flex items-center space-x-1 cursor-pointer">
-              <span className="text-sm">Light</span>
-              <div className="relative">
-                <input
-                  type="checkbox"
-                  className="hidden peer"
-                  // checked={theme === "dark"}
-                  // onChange={handleToggle}
-                />
-                <div className="w-10 h-6 bg-gray-300 peer-checked:bg-green-600 dark:bg-gray-600 rounded-full shadow-inner" />
-                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 bg-white peer-checked:left-auto peer-checked:right-0 rounded-full shadow transition-all" />
-              </div>
-              <span className="text-sm">Dark</span>
-            </label>
-
-            {/* Mobile Auth Buttons */}
-            {!user ? (
-              <>
-                <button
-                  onClick={() => navigate("/sign-in")}
-                  className={`text-sm ${
-                    pathname === "/sign-in" ? "text-red-500 font-semibold" : ""
-                  }`}
-                >
-                  Sign in
-                </button>
-                <button
-                  onClick={() => navigate("/sign-up")}
-                  className={`text-sm ${
-                    pathname === "/sign-up" ? "text-red-500 font-semibold" : ""
-                  }`}
-                >
-                  Sign up
-                </button>
-              </>
-            ) : (
-              <details className="dropdown dropdown-end">
-                <summary className="cursor-pointer list-none">
-                  {user.photoURL ? (
-                    <img
-                      src={user.photoURL}
-                      alt="User"
-                      className="w-10 h-10 rounded-full border-2 border-green-700 p-0.5"
-                    />
-                  ) : (
-                    <FaUser size={24} />
-                  )}
-                </summary>
-                <ul className="p-2 bg-white dark:bg-gray-700 shadow-md rounded-md w-32">
-                  <li>
-                    <button
-                      onClick={handleLogOut}
-                      className="btn w-full text-left text-sm"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </details>
-            )}
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white focus:outline-none"
+            >
+              <FaBars size={24} />
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu Content */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-green-700 rounded-b-md">
+            <nav className="flex flex-col space-y-2 p-4">
+              {navLinks.map(([label, path]) => (
+                <NavLink
+                  key={label}
+                  to={path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `text-white text-sm ${
+                      isActive ? "font-semibold underline" : "hover:underline"
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+
+              {!user ? (
+                <>
+                  <button
+                    onClick={() => {
+                      navigate("/sign-in");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-white text-sm hover:underline"
+                  >
+                    Sign in
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/sign-up");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-white text-sm hover:underline"
+                  >
+                    Sign up
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      handleLogOut();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-white text-sm hover:underline"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );

@@ -118,7 +118,7 @@ const BrowseTips = () => {
                           src={tip.imageUrl}
                           alt={tip.title}
                           onError={(e) => {
-                            e.target.src = "https://via.placeholder.com/100";
+                            e.target.src = "/placeholder.png";
                           }}
                         />
                       </div>

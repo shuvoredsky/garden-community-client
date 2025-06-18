@@ -19,7 +19,7 @@ const TipDetails = () => {
 
   const handleupdateLike = () => {
     setLike(like + 1);
-    console.log(like);
+    // console.log(like);
     fetch(`https://garden-community-server.vercel.app/gardener/${_id}`, {
       method: "PATCH",
       headers: {

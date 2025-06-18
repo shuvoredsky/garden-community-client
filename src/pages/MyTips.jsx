@@ -8,7 +8,7 @@ const MyTips = () => {
   const [tips, setTips] = useState([]);
 
   useEffect(() => {
-    setTips(loadedData); // set data into state when component loads
+    setTips(loadedData);
   }, [loadedData]);
 
   const handleDeleteTip = (_id) => {
