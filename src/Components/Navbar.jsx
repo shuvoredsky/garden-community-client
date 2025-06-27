@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogOut = () => {
     logOut()
@@ -14,10 +16,13 @@ const Navbar = () => {
       .catch((err) => toast.error(err.message));
   };
 
-  const navLinks = [
+  const baseLinks = [
     ["Home", "/"],
     ["All Tips", "/browse-tips"],
     ["Explore Gardeners", "/explore-gardeners"],
+  ];
+
+  const authLinks = [
     ["Share Tip", "/share-tip"],
     ["My Tips", "/my-tips"],
     ["Dashboard", "/dashboardLayout"],
@@ -40,7 +45,7 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6 items-center">
-          {navLinks.map(([label, path]) => (
+          {baseLinks.map(([label, path]) => (
             <NavLink
               key={label}
               to={path}
@@ -55,6 +60,23 @@ const Navbar = () => {
               {label}
             </NavLink>
           ))}
+
+          {user &&
+            authLinks.map(([label, path]) => (
+              <NavLink
+                key={label}
+                to={path}
+                className={({ isActive }) =>
+                  `text-md px-2 py-1 transition duration-200 ${
+                    isActive
+                      ? activeClass
+                      : "hover:border-b-2 hover:border-green-300"
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
         </nav>
 
         {/* Desktop User */}
@@ -73,7 +95,7 @@ const Navbar = () => {
               />
               <button
                 onClick={handleLogOut}
-                className="px-3 py-2 text-sm font-bold bg-white text-green-800 rounded hover:bg-red-500 hover:text-white"
+                className="px-3 py-1 text-sm font-semibold bg-white text-green-800 rounded hover:bg-red-500 hover:text-white"
               >
                 Logout
               </button>
@@ -81,7 +103,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile User Menu */}
         <div className="md:hidden relative">
           {user ? (
             <details className="dropdown dropdown-end">
@@ -92,12 +114,13 @@ const Navbar = () => {
                   alt="User"
                 />
               </summary>
-              <ul className="absolute right-0 mt-2 p-3 bg-green-900 shadow-lg rounded-md w-48 text-white z-50">
-                {navLinks.map(([label, path]) => (
+              <ul className="absolute right-0 mt-2 p-3 bg-green-900 shadow-lg rounded-md w-48 text-white z-50 space-y-1">
+                {[...baseLinks, ...authLinks].map(([label, path]) => (
                   <li key={label}>
                     <NavLink
                       to={path}
                       className="block py-1 px-2 hover:bg-green-700 rounded"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {label}
                     </NavLink>
@@ -105,7 +128,10 @@ const Navbar = () => {
                 ))}
                 <li className="border-t mt-2 pt-2">
                   <button
-                    onClick={handleLogOut}
+                    onClick={() => {
+                      handleLogOut();
+                      setIsMobileMenuOpen(false);
+                    }}
                     className="block w-full text-left px-2 py-1 hover:bg-red-600 rounded"
                   >
                     Logout
@@ -114,11 +140,20 @@ const Navbar = () => {
               </ul>
             </details>
           ) : (
-            <FaUser
-              size={24}
-              className="cursor-pointer text-white"
-              onClick={() => navigate("/sign-in")}
-            />
+            <div className="flex gap-3">
+              <button
+                onClick={() => navigate("/sign-in")}
+                className="text-sm underline"
+              >
+                Sign in
+              </button>
+              <button
+                onClick={() => navigate("/sign-up")}
+                className="text-sm underline"
+              >
+                Sign up
+              </button>
+            </div>
           )}
         </div>
       </div>
