@@ -11,6 +11,10 @@ import MyTips from "../pages/MyTips.jsx";
 import UpdateMyTips from "../pages/UpdateMyTips.jsx";
 import ExploreGardenr from "../pages/ExploreGardenr.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
+import DashboardLayout from "../Components/DashboardLayout.jsx";
+import MyGardenersTips from "../pages/DashboardComponents/MyGardenersTips.jsx";
+import AddGardenerTips from "../pages/DashboardComponents/AddGardenerTips.jsx";
+import AllGardenerTips from "../pages/DashboardComponents/AllGardenerTips.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -24,8 +28,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-tips",
-        loader: () =>
-          fetch("https://garden-community-server.vercel.app/gardener/"),
         element: (
           <PrivetRoute>
             <MyTips></MyTips>
@@ -81,6 +83,41 @@ export const router = createBrowserRouter([
             <TipDetails></TipDetails>
           </PrivetRoute>
         ),
+      },
+
+      {
+        path: "dashboardLayout",
+        Component: DashboardLayout,
+        children: [
+          {
+            path: "my-gardeners-tips",
+            element: (
+              <PrivetRoute>
+                <MyGardenersTips />
+              </PrivetRoute>
+            ),
+            loader: async () => {
+              try {
+                const res = await fetch(
+                  "https://garden-community-server.vercel.app/gardener/"
+                );
+                if (!res.ok) throw new Error("Failed to fetch");
+                return await res.json();
+              } catch (error) {
+                console.error("Loader error:", error);
+                return [];
+              }
+            },
+          },
+          {
+            path: "add-gardener-tips",
+            Component: AddGardenerTips,
+          },
+          {
+            path: "allTips",
+            Component: AllGardenerTips,
+          },
+        ],
       },
     ],
   },

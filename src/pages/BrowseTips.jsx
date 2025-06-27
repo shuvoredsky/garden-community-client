@@ -76,7 +76,7 @@ const BrowseTips = () => {
               name="difficulty"
               value={filters.difficulty}
               onChange={handleFilterChange}
-              className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="border border-gray-300 bg-black text-white rounded-md px-3 py-1"
             >
               <option value="">All Levels</option>
               <option value="Easy">Easy</option>

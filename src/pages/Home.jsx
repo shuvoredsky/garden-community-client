@@ -13,8 +13,8 @@ const Home = () => {
         <title>Garden | Home</title>
       </Helmet>
       <EventSlider></EventSlider>
-      <ActiveGardeners></ActiveGardeners>
       <GardenerTips></GardenerTips>
+      <ActiveGardeners></ActiveGardeners>
       <Events></Events>
       <GardeningBenefits></GardeningBenefits>
     </div>

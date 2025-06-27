@@ -51,12 +51,12 @@
     "id": 9,
     "name": "Kuddus Ali",
     "image": "https://i.ibb.co/tTcpjhzT/positive-male-florist-standing-rows-with-potted-plants-greenhouse-cutting-bush-holding-sprouts.jpg",
-    "status": "inactive"
+    "status": "active"
   },
   {
     "id": 10,
     "name": "Mokbul Rahman",
     "image": "https://i.ibb.co/0p0n2KRL/portrait-man-working-with-weedwacker.jpg",
-    "status": "inactive"
+    "status": "active"
   }
 ]

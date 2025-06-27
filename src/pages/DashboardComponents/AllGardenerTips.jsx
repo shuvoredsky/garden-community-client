@@ -20,7 +20,7 @@ const GardenerTips = () => {
           Discover community-shared gardening wisdom to help your plants thrive
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {gardenersTips.map((gardener) => (
             <div
               key={gardener._id}

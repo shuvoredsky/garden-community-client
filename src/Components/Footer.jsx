@@ -1,15 +1,22 @@
 import React from "react";
 import { FaFacebook, FaInstagramSquare, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router";
-
+import logo from "/logo.png";
 const Footer = () => {
   return (
-    <footer className="bg-green-900 text-white ">
-      <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col items-center text-center space-y-10">
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+    <footer className="bg-green-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center sm:text-left">
           {/* Column 1 */}
-          <div className="lg:ml-40">
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+          <div>
+            <Link
+              to="/"
+              className="flex justify-center sm:justify-start items-center mb-4"
+            >
+              <img className="w-10 h-10 mr-2" src={logo} alt="Logo" />
+              <h3 className="text-xl font-bold">Garden</h3>
+            </Link>
+            <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="hover:underline">
@@ -41,7 +48,7 @@ const Footer = () => {
 
           {/* Column 2 */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">About Gardenia</h3>
+            <h4 className="text-lg font-semibold mb-3">About</h4>
             <p className="text-sm leading-relaxed mb-3">
               Gardenia is your friendly garden community for sharing tips,
               learning new techniques, and connecting with fellow plant lovers.
@@ -52,16 +59,26 @@ const Footer = () => {
           </div>
 
           {/* Column 3 */}
-          <div className="lg:ml-20">
-            <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-            <div className="flex justify-center md:justify-start space-x-5 text-2xl">
-              <a href="#" aria-label="Facebook">
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Follow Us</h4>
+            <div className="flex justify-center sm:justify-start space-x-5 text-2xl">
+              <a
+                href="https://www.facebook.com/sk.shuvo.129794"
+                target="_blank"
+                aria-label="Facebook"
+                rel="noopener noreferrer"
+              >
                 <FaFacebook />
               </a>
               <a href="#" aria-label="Twitter">
                 <FaTwitter />
               </a>
-              <a href="#" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/shuvoredsky/"
+                target="_blank"
+                aria-label="Instagram"
+                rel="noopener noreferrer"
+              >
                 <FaInstagramSquare />
               </a>
             </div>
@@ -69,7 +86,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-white/20 w-full pt-6 text-sm">
+        <div className="border-t border-white/20 w-full pt-6 mt-10 text-sm text-center">
           © {new Date().getFullYear()} Gardenia Community. All rights reserved.
         </div>
       </div>

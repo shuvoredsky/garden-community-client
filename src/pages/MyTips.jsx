@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const MyTips = () => {
-  const loadedData = useLoaderData();
-  const [tips, setTips] = useState([]);
+  const { user } = use(AuthContext);
 
+  const [tips, setTips] = useState([]);
   useEffect(() => {
-    setTips(loadedData);
-  }, [loadedData]);
+    if (user?.email) {
+      fetch(`https://garden-community-server.vercel.app/my-items/${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setTips(data));
+    }
+  }, [user]);
+  console.log(tips);
 
   const handleDeleteTip = (_id) => {
     Swal.fire({

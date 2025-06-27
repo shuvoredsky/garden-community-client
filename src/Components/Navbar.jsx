@@ -1,188 +1,126 @@
-import React, { useContext, useState } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router";
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
-import { FaUser, FaBars } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogOut = () => {
     logOut()
-      .then(() => toast.success("Sign out successfully"))
-      .catch((error) => toast.error(error.message));
+      .then(() => toast.success("Logged out successfully"))
+      .catch((err) => toast.error(err.message));
   };
 
   const navLinks = [
     ["Home", "/"],
-    ["Browse Tips", "/browse-tips"],
+    ["All Tips", "/browse-tips"],
     ["Explore Gardeners", "/explore-gardeners"],
-    ["Share Garden Tip", "/share-tip"],
+    ["Share Tip", "/share-tip"],
     ["My Tips", "/my-tips"],
+    ["Dashboard", "/dashboardLayout"],
   ];
 
   const activeClass =
     "border-b-2 border-green-300 dark:border-green-400 font-semibold";
 
   return (
-    <header className="sticky top-0 z-50 shadow-md bg-green-800 text-white dark:bg-green-900">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div
-            className="flex items-center gap-2 cursor-pointer"
-            onClick={() => navigate("/")}
-          >
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-10 h-10 rounded-full"
-            />
-            <span className="text-2xl font-bold text-white">Garden</span>
-          </div>
-
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex space-x-6 items-center">
-            {navLinks.map(([label, path]) => (
-              <NavLink
-                key={label}
-                to={path}
-                className={({ isActive }) =>
-                  `text-md px-2 py-1 transition duration-200 ${
-                    isActive
-                      ? activeClass
-                      : "hover:border-b-2 hover:border-green-300"
-                  }`
-                }
-              >
-                {label}
-              </NavLink>
-            ))}
-          </nav>
-
-          {/* Desktop Auth */}
-          <div className="hidden md:flex items-center space-x-4">
-            {!user ? (
-              <>
-                <button
-                  onClick={() => navigate("/sign-in")}
-                  className={`text-sm ${
-                    pathname === "/sign-in"
-                      ? "text-yellow-300 font-semibold"
-                      : ""
-                  }`}
-                >
-                  Sign in
-                </button>
-                <button
-                  onClick={() => navigate("/sign-up")}
-                  className={`text-sm ${
-                    pathname === "/sign-up"
-                      ? "text-yellow-300 font-semibold"
-                      : ""
-                  }`}
-                >
-                  Sign up
-                </button>
-              </>
-            ) : (
-              <details className="dropdown dropdown-end">
-                <summary className="cursor-pointer list-none">
-                  {user?.photoURL ? (
-                    <img
-                      src={user.photoURL}
-                      alt="User"
-                      title={user.displayName || "User"}
-                      className="w-10 h-10 rounded-full border-2 border-green-300 p-0.5 object-cover hover:scale-105 transition duration-300"
-                    />
-                  ) : (
-                    <FaUser size={32} title="Guest User" />
-                  )}
-                </summary>
-                <ul className="p-2 mt-2 bg-white dark:bg-gray-700 shadow-md rounded-md w-36 text-black dark:text-white">
-                  <li>
-                    <button
-                      onClick={handleLogOut}
-                      className="w-full text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-600 p-1 rounded"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </details>
-            )}
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white focus:outline-none"
-            >
-              <FaBars size={24} />
-            </button>
-          </div>
+    <header className="sticky top-0 z-50 bg-green-800 text-white shadow-md">
+      <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between h-16">
+        {/* Logo */}
+        <div
+          className="flex items-center gap-2 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          <img src="/logo.png" alt="Logo" className="w-10 h-10 rounded-full" />
+          <span className="text-2xl font-bold text-white">Garden</span>
         </div>
 
-        {/* Mobile Menu Content */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-green-700 rounded-b-md">
-            <nav className="flex flex-col space-y-2 p-4">
-              {navLinks.map(([label, path]) => (
-                <NavLink
-                  key={label}
-                  to={path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    `text-white text-sm ${
-                      isActive ? "font-semibold underline" : "hover:underline"
-                    }`
-                  }
-                >
-                  {label}
-                </NavLink>
-              ))}
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex space-x-6 items-center">
+          {navLinks.map(([label, path]) => (
+            <NavLink
+              key={label}
+              to={path}
+              className={({ isActive }) =>
+                `text-md px-2 py-1 transition duration-200 ${
+                  isActive
+                    ? activeClass
+                    : "hover:border-b-2 hover:border-green-300"
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
 
-              {!user ? (
-                <>
+        {/* Desktop User */}
+        <div className="hidden md:flex items-center space-x-4">
+          {!user ? (
+            <>
+              <button onClick={() => navigate("/sign-in")}>Sign in</button>
+              <button onClick={() => navigate("/sign-up")}>Sign up</button>
+            </>
+          ) : (
+            <>
+              <img
+                src={user.photoURL || "https://via.placeholder.com/150"}
+                className="w-10 h-10 rounded-full object-cover border-2 border-white"
+                alt="User"
+              />
+              <button
+                onClick={handleLogOut}
+                className="px-3 py-2 text-sm font-bold bg-white text-green-800 rounded hover:bg-red-500 hover:text-white"
+              >
+                Logout
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Mobile Dropdown */}
+        <div className="md:hidden relative">
+          {user ? (
+            <details className="dropdown dropdown-end">
+              <summary className="cursor-pointer list-none">
+                <img
+                  src={user.photoURL || "https://via.placeholder.com/150"}
+                  className="w-10 h-10 rounded-full object-cover border-2 border-white"
+                  alt="User"
+                />
+              </summary>
+              <ul className="absolute right-0 mt-2 p-3 bg-green-900 shadow-lg rounded-md w-48 text-white z-50">
+                {navLinks.map(([label, path]) => (
+                  <li key={label}>
+                    <NavLink
+                      to={path}
+                      className="block py-1 px-2 hover:bg-green-700 rounded"
+                    >
+                      {label}
+                    </NavLink>
+                  </li>
+                ))}
+                <li className="border-t mt-2 pt-2">
                   <button
-                    onClick={() => {
-                      navigate("/sign-in");
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-white text-sm hover:underline"
-                  >
-                    Sign in
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate("/sign-up");
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-white text-sm hover:underline"
-                  >
-                    Sign up
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    onClick={() => {
-                      handleLogOut();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-white text-sm hover:underline"
+                    onClick={handleLogOut}
+                    className="block w-full text-left px-2 py-1 hover:bg-red-600 rounded"
                   >
                     Logout
                   </button>
-                </>
-              )}
-            </nav>
-          </div>
-        )}
+                </li>
+              </ul>
+            </details>
+          ) : (
+            <FaUser
+              size={24}
+              className="cursor-pointer text-white"
+              onClick={() => navigate("/sign-in")}
+            />
+          )}
+        </div>
       </div>
     </header>
   );
