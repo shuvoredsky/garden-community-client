@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
-
+import errorImg from "../../src/assets/error.jpg";
 const ErrorPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-green-50 px-4">
       <div className="text-center">
         <img
-          src="https://i.ibb.co/WzP8TCN/404-garden.png" // একটি সুন্দর 404 ইমেজ
+          src={errorImg} // একটি সুন্দর 404 ইমেজ
           alt="404 Not Found"
           className="w-72 mx-auto mb-6"
         />
